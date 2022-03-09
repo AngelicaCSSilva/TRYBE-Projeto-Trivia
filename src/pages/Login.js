@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import logo from '../trivia.png';
-// import { loginAction } from '../actions';
+import { addEmailAndNameToState, saveToken } from '../actions';
 
 class Login extends Component {
   state = {
@@ -17,11 +17,12 @@ class Login extends Component {
     });
   }
 
-  handleClick = () => {
-    const { email } = this.state;
-    const { userClick, history } = this.props;
-    userClick(email);
-    history.push('/play');
+  handleClick = async () => {
+    const { email, name } = this.state;
+    const { playClick, saveAPIToken, history } = this.props;
+    playClick({ email, name });
+    await saveAPIToken();
+    history.push('/game');
   }
 
   render() {
@@ -72,11 +73,13 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  userClick: (email) => dispatch((email)),
+  playClick: (objectEmailName) => dispatch(addEmailAndNameToState(objectEmailName)),
+  saveAPIToken: () => dispatch(saveToken()),
 });
 
 Login.propTypes = {
-  userClick: PropTypes.func.isRequired,
+  playClick: PropTypes.func.isRequired,
+  saveAPIToken: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
