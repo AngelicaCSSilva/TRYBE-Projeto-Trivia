@@ -5,6 +5,11 @@ import logo from '../trivia.png';
 // import { loginAction } from '../actions';
 
 class Login extends Component {
+  state = {
+    email: '',
+    name: '',
+  }
+
   handleChanges = ({ target }) => {
     const { name, value } = target;
     this.setState({
