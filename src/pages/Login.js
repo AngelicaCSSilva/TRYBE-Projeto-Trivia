@@ -17,7 +17,15 @@ class Login extends Component {
     });
   }
 
+  handleClick = () => {
+    const { email } = this.state;
+    const { userClick, history } = this.props;
+    userClick(email);
+    history.push('/play');
+  }
+
   render() {
+    const { email, name } = this.state;
     return (
       <section>
         <header className="App-header">
@@ -63,5 +71,15 @@ class Login extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  userClick: (email) => dispatch((email)),
+});
+
+Login.propTypes = {
+  userClick: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(Login);
