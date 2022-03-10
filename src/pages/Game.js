@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from '../components/Header';
 
 class Game extends Component {
   // handleChanges = ({ target }) => {
@@ -16,9 +17,14 @@ class Game extends Component {
   // }
   render() {
     return (
-      <section>
-        <p> AAAA </p>
-      </section>
+      <>
+        <header>
+          <Header />
+        </header>
+        <section>
+          <p> AAAA </p>
+        </section>
+      </>
     );
   }
 }
