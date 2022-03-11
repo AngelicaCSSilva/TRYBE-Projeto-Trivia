@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
+import Questions from '../components/Questions';
 
 class Game extends Component {
   // handleChanges = ({ target }) => {
@@ -22,7 +23,7 @@ class Game extends Component {
           <Header />
         </header>
         <section>
-          <p> AAAA </p>
+          <Questions />
         </section>
       </>
     );
