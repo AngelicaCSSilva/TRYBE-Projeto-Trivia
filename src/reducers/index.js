@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import { player, token } from './user';
+import { player, token, results } from './user';
 
-export default combineReducers({ player, token });
+export default combineReducers({ player, token, results });
