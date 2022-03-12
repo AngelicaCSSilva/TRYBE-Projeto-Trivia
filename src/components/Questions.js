@@ -66,10 +66,6 @@ class Questions extends Component {
     renderAnswers = () => {
       const { results } = this.props;
       const { currentQuestion } = this.state;
-      const { category } = results[currentQuestion];
-      // const { currentQuestion, allQuestions } = this.state;
-      // const selectedQuestion = allQuestions[currentQuestion];
-      // console.log(allQuestions[currentQuestion].correct_answer);
 
       // [Desestruturação]
       const {
@@ -83,6 +79,19 @@ class Questions extends Component {
       const randomlyArrangedAnswers = this
         .createArrayWithRandomlyArrangedAnswers(arrayAnswersElements);
 
+      return (
+        <>
+          {randomlyArrangedAnswers.map((answer, index) => (
+            <div
+              key={ index }
+              data-testid="answer-options"
+              id={ `option-${index}` }
+            >
+              { answer }
+            </div>
+          ))}
+        </>
+      );
     }
 
     render() {
