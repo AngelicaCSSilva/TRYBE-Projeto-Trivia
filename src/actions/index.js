@@ -1,11 +1,17 @@
 import { getTokenFromAPI, getQuestions } from '../services/API';
 
+// [ DADOS USER ]
 export const ADD_EMAIL_NAME = 'ADD_EMAIL_NAME';
+
+// [ TOKEN ]
 export const SAVE_TOKEN = 'SAVE_TOKEN';
+
+// [ QUESTIONS ]
 export const GET_QUESTIONS_SUCCESS = 'GET_QUESTIONS_SUCCESS';
 export const GET_QUESTIONS_ERROR = 'GET_QUESTIONS_ERROR';
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
 
+// --- [ DADOS USER ]
 export function addEmailAndNameToState(objectEmailName) {
   return {
     type: ADD_EMAIL_NAME,
@@ -13,6 +19,7 @@ export function addEmailAndNameToState(objectEmailName) {
   };
 }
 
+// --- [ TOKEN ]
 const saveTokenToState = (token) => ({
   type: SAVE_TOKEN,
   token,
@@ -24,6 +31,7 @@ export const saveToken = () => async (dispatch) => {
   dispatch(saveTokenToState(token));
 };
 
+// --- [ QUESTIONS ]
 const requestQuestions = () => ({
   type: REQUEST_QUESTIONS,
 });
