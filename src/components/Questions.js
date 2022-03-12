@@ -79,6 +79,10 @@ class Questions extends Component {
       // [ Cria os elementos conforme solicitado pelo requisito, adicionando data-testid  ]
       const arrayAnswersElements = this.createElements(correct, incorrects);
 
+      // [Cria um novo array com as respostas organizadas aleatoriamente ]
+      const randomlyArrangedAnswers = this
+        .createArrayWithRandomlyArrangedAnswers(arrayAnswersElements);
+
     }
 
     render() {
