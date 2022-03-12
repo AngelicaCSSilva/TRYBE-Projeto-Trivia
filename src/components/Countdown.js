@@ -21,8 +21,16 @@ class Countdown extends Component {
     if ((timer === 0 || isCountdownStopped) && runningTimer) {
       stopTimer();
       this.clearTimer();
+      this.changeButtonStyles();
     }
+  }
 
+  changeButtonStyles = () => {
+    const answersButtons = document.querySelectorAll('.answers');
+    answersButtons.forEach((button) => {
+      button.classList.remove('hidden');
+      button.disabled = true;
+    });
   }
 
   handleTimer = () => {
