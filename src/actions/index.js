@@ -11,6 +11,11 @@ export const GET_QUESTIONS_SUCCESS = 'GET_QUESTIONS_SUCCESS';
 export const GET_QUESTIONS_ERROR = 'GET_QUESTIONS_ERROR';
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
 
+// [ COUNTDOWN ]
+export const UPDATE_COUNTDOWN = 'UPDATE_COUNTDOWN';
+export const STOP_COUNTDOWN = 'STOP_COUNTDOWN';
+export const RESET_COUNTDOWN = 'RESET_COUNTDOWN';
+
 // --- [ DADOS USER ]
 export function addEmailAndNameToState(objectEmailName) {
   return {
@@ -55,3 +60,23 @@ export const saveQuestions = (token) => async (dispatch) => {
     dispatch(getQuestionsError(error.message));
   }
 };
+
+// --- [ COUNTDOWN ]
+export function updateCountdown() {
+  return {
+    type: UPDATE_COUNTDOWN,
+  };
+}
+
+export function stopCountdown() {
+  return {
+    type: STOP_COUNTDOWN,
+  };
+}
+
+export function resetCountdown() {
+  return {
+    type: RESET_COUNTDOWN,
+  };
+}
+
