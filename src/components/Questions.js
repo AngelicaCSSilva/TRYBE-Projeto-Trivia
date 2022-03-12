@@ -14,6 +14,15 @@ class Questions extends Component {
       return Math.floor(Math.random() * max);
     }
 
+    createArrayWithRandomlyArrangedAnswers = (arrayAnswersElements) => {
+      const randomlyArrangedAnswers = [];
+      while (arrayAnswersElements.length) {
+        const index = this.getRandomNumber(arrayAnswersElements.length);
+        randomlyArrangedAnswers.push(arrayAnswersElements.splice(index, 1));
+      }
+      return randomlyArrangedAnswers;
+    }
+
     componentDidMount = async () => {
       const { token, saveAPIQuestions } = this.props;
       await saveAPIQuestions(token);
