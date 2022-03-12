@@ -9,4 +9,10 @@ class Countdown extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  updateTimer: () => dispatch(updateCountdown()),
+  resetTimer: () => dispatch(resetCountdown()),
+  stopTimer: () => dispatch(stopCountdown()),
+});
+
 export default connect(mapStateToProps, mapDispatchToProps)(Countdown);
