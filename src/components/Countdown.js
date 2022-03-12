@@ -73,7 +73,6 @@ class Countdown extends Component {
 Countdown.propTypes = {
   timer: PropTypes.number.isRequired,
   isCountdownStopped: PropTypes.bool.isRequired,
-  maxDuration: PropTypes.number.isRequired,
   updateTimer: PropTypes.func.isRequired,
   resetTimer: PropTypes.func.isRequired,
   stopTimer: PropTypes.func.isRequired,
@@ -82,7 +81,7 @@ Countdown.propTypes = {
 const mapStateToProps = (state) => ({
   timer: state.countdown.timer,
   isCountdownStopped: state.countdown.isCountdownStopped,
-  maxDuration: state.countdown.durationInSeconds,
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
