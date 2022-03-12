@@ -76,6 +76,9 @@ class Questions extends Component {
         correct_answer: correct,
         incorrect_answers: incorrects } = results[currentQuestion];
 
+      // [ Cria os elementos conforme solicitado pelo requisito, adicionando data-testid  ]
+      const arrayAnswersElements = this.createElements(correct, incorrects);
+
     }
 
     render() {
