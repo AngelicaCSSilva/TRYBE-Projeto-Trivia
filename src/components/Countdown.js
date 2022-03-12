@@ -5,8 +5,10 @@ import { updateCountdown, resetCountdown, stopCountdown } from '../actions';
 
 class Countdown extends Component {
   render() {
+    const { timer } = this.props;
     return (
       <div>
+        { timer }
       </div>
     );
   }
