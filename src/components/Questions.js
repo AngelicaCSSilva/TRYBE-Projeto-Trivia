@@ -8,6 +8,12 @@ class Questions extends Component {
       currentQuestion: 0,
     }
 
+    // Ref.: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+    getRandomNumber = (answersLength) => {
+      const max = Math.floor(answersLength);
+      return Math.floor(Math.random() * max);
+    }
+
     componentDidMount = async () => {
       const { token, saveAPIQuestions } = this.props;
       await saveAPIQuestions(token);
