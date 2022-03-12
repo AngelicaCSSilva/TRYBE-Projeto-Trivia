@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { saveQuestions, saveToken } from '../actions';
-
-// const MIN = 0;
-// const MAX = 6;
-// const INDEX = Math.floor(Math.random() * (MAX - MIN) + MIN);
+import { saveQuestions, saveToken } from '../actions';
 
 class Questions extends Component {
   state = {
@@ -68,9 +64,9 @@ const mapStateToProps = (state) => ({
   results: state.results.questions,
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   saveAPIQuestions: (token) => dispatch(saveQuestions(token)),
-//   saveAPIToken: () => dispatch(saveToken()),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  saveAPIQuestions: (token) => dispatch(saveQuestions(token)),
+  saveAPIToken: () => dispatch(saveToken()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);
