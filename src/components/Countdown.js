@@ -9,6 +9,9 @@ class Countdown extends Component {
     runningTimer: null,
   }
 
+  componentDidMount() {
+    this.handleTimer();
+  }
   handleTimer = () => {
     const { updateTimer } = this.props;
     const { intervalInSeconds } = this.state;
