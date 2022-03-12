@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { updateCountdown, resetCountdown, stopCountdown } from '../actions';
+
 class Countdown extends Component {
   render() {
     return (
