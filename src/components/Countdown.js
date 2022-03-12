@@ -9,6 +9,12 @@ class Countdown extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  timer: state.countdown.timer,
+  isCountdownStopped: state.countdown.isCountdownStopped,
+  maxDuration: state.countdown.durationInSeconds,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   updateTimer: () => dispatch(updateCountdown()),
   resetTimer: () => dispatch(resetCountdown()),
