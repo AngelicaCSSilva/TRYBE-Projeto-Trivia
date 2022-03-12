@@ -41,6 +41,14 @@ class Questions extends Component {
       );
     }
 
+    handleClick = () => {
+      const answersButtons = document.querySelectorAll('.answers');
+      answersButtons.forEach((button) => {
+        button.classList.remove('hidden');
+        button.disabled = true;
+      });
+    }
+
     createElements = (correct, incorrects) => {
       const incorretsElements = incorrects.map((answer, index) => (
         <button
