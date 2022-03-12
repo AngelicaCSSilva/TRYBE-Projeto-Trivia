@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { saveQuestions, saveToken, stopCountdown } from '../actions';
+import { saveQuestions, saveToken, stopCountdown, saveRandomlyAnswers } from '../actions';
 import '../styles/answers.css';
 
 class Questions extends Component {
@@ -27,6 +27,7 @@ class Questions extends Component {
     componentDidMount = async () => {
       const { token, saveAPIQuestions } = this.props;
       await saveAPIQuestions(token);
+      this.SaveToStateRandomlyAnswers();
     }
 
     renderQuestion = () => {
@@ -73,25 +74,32 @@ class Questions extends Component {
       return [correctElement, ...incorretsElements];
     }
 
-    renderAnswers = () => {
-      const { results } = this.props;
+    SaveToStateRandomlyAnswers = () => {
+      const { results, saveRandomlyAnswersArray, randomAnswers } = this.props;
       const { currentQuestion } = this.state;
 
+      if (randomAnswers.length === 0) {
       // [Desestruturação]
-      const {
-        correct_answer: correct,
-        incorrect_answers: incorrects } = results[currentQuestion];
+        const {
+          correct_answer: correct,
+          incorrect_answers: incorrects } = results[currentQuestion];
 
-      // [ Cria os elementos conforme solicitado pelo requisito, adicionando data-testid  ]
-      const arrayAnswersElements = this.createElements(correct, incorrects);
+        // [ Cria os elementos conforme solicitado pelo requisito, adicionando data-testid  ]
+        const arrayAnswersElements = this.createElements(correct, incorrects);
 
-      // [Cria um novo array com as respostas organizadas aleatoriamente ]
-      const randomlyArrangedAnswers = this
-        .createArrayWithRandomlyArrangedAnswers(arrayAnswersElements);
+        // [Cria um novo array com as respostas organizadas aleatoriamente ]
+        const randomlyArrangedAnswers = this
+          .createArrayWithRandomlyArrangedAnswers(arrayAnswersElements);
 
+        saveRandomlyAnswersArray(randomlyArrangedAnswers);
+      }
+    }
+
+    renderAnswers = () => {
+      const { randomAnswers } = this.props;
       return (
         <>
-          {randomlyArrangedAnswers.map((answer, index) => (
+          {randomAnswers.map((answer, index) => (
             <div
               key={ index }
               data-testid="answer-options"
@@ -111,6 +119,7 @@ class Questions extends Component {
           { results.length > 0 && this.renderQuestion() }
 
           { results.length > 0 && this.renderAnswers() }
+
         </section>
       );
     }
@@ -120,18 +129,22 @@ Questions.propTypes = {
   token: PropTypes.string.isRequired,
   saveAPIQuestions: PropTypes.func.isRequired,
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  randomAnswers: PropTypes.arrayOf(PropTypes.array).isRequired,
   stopTimer: PropTypes.func.isRequired,
+  saveRandomlyAnswersArray: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   token: state.token,
   results: state.results.questions,
+  randomAnswers: state.randomlyAnswers.array,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   saveAPIQuestions: (token) => dispatch(saveQuestions(token)),
   saveAPIToken: () => dispatch(saveToken()),
   stopTimer: () => dispatch(stopCountdown()),
+  saveRandomlyAnswersArray: (array) => dispatch(saveRandomlyAnswers(array)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);
