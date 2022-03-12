@@ -24,6 +24,11 @@ class Countdown extends Component {
     });
   }
 
+  newTimer() {
+    const { resetTimer } = this.props;
+    resetTimer();
+  }
+
   render() {
     const { timer } = this.props;
     return (
