@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import { updateCountdown, resetCountdown, stopCountdown } from '../actions';
 
 class Countdown extends Component {
+  state = {
+    intervalInSeconds: 1000,
+    runningTimer: null,
+  }
   render() {
     const { timer } = this.props;
     return (
