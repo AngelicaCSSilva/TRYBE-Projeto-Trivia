@@ -1,3 +1,7 @@
+import {
+  CLEAR_RANDOMLY_ANSWERS,
+  SAVE_RANDOMLY_ANSWERS } from '../actions';
+
 const initialState = {
   array: [] };
 
