@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Countdown from '../components/Countdown';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
 
@@ -24,6 +25,7 @@ class Game extends Component {
         </header>
         <section>
           <Questions />
+          <Countdown />
         </section>
       </>
     );
