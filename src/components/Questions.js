@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import { saveQuestions, saveToken } from '../actions';
 
 class Questions extends Component {
-  state = {
-    currentQuestion: 0,
-    // answers: '',
-  }
+    state = {
+      currentQuestion: 0,
+    }
 
     componentDidMount = async () => {
       const { token, saveAPIQuestions } = this.props;
