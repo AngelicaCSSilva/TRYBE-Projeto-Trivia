@@ -6,3 +6,11 @@ const INITIAL_STATE = {
   isCountdownStopped: false,
 };
 
+export function countdown(state = INITIAL_STATE, action) {
+  switch (action.type) {
+  default:
+    return state;
+  }
+}
+
+export default countdown;
