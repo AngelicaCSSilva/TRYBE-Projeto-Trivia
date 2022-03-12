@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { saveQuestions, saveToken } from '../actions';
+import { saveQuestions, saveToken, stopCountdown } from '../actions';
 import '../styles/answers.css';
 
 class Questions extends Component {
@@ -42,11 +42,8 @@ class Questions extends Component {
     }
 
     handleClick = () => {
-      const answersButtons = document.querySelectorAll('.answers');
-      answersButtons.forEach((button) => {
-        button.classList.remove('hidden');
-        button.disabled = true;
-      });
+      const { stopTimer } = this.props;
+      stopTimer();
     }
 
     createElements = (correct, incorrects) => {
@@ -123,6 +120,7 @@ Questions.propTypes = {
   token: PropTypes.string.isRequired,
   saveAPIQuestions: PropTypes.func.isRequired,
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  stopTimer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -133,6 +131,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   saveAPIQuestions: (token) => dispatch(saveQuestions(token)),
   saveAPIToken: () => dispatch(saveToken()),
+  stopTimer: () => dispatch(stopCountdown()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);
