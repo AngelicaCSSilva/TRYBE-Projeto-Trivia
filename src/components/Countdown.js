@@ -8,6 +8,19 @@ class Countdown extends Component {
     intervalInSeconds: 1000,
     runningTimer: null,
   }
+
+  handleTimer = () => {
+    const { updateTimer } = this.props;
+    const { intervalInSeconds } = this.state;
+    const runningTimer = setInterval(() => {
+      updateTimer();
+    }, intervalInSeconds);
+
+    this.setState({
+      runningTimer,
+    });
+  }
+
   render() {
     const { timer } = this.props;
     return (
