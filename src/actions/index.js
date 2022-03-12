@@ -16,6 +16,10 @@ export const UPDATE_COUNTDOWN = 'UPDATE_COUNTDOWN';
 export const STOP_COUNTDOWN = 'STOP_COUNTDOWN';
 export const RESET_COUNTDOWN = 'RESET_COUNTDOWN';
 
+// [ SAVE ANSWERS RANDOMLY ]
+export const SAVE_RANDOMLY_ANSWERS = 'SAVE_RANDOMLY_ANSWERS';
+export const CLEAR_RANDOMLY_ANSWERS = 'CLEAR_RANDOMLY_ANSWERS';
+
 // --- [ DADOS USER ]
 export function addEmailAndNameToState(objectEmailName) {
   return {
@@ -80,3 +84,16 @@ export function resetCountdown() {
   };
 }
 
+// --- [ SAVE ANSWERS RANDOMLY ]
+export function saveRandomlyAnswers(arrayAnswers) {
+  return {
+    type: SAVE_RANDOMLY_ANSWERS,
+    arrayAnswers,
+  };
+}
+
+export function clearRandomlyAnswers() {
+  return {
+    type: CLEAR_RANDOMLY_ANSWERS,
+  };
+}
