@@ -5,7 +5,15 @@ export const getTokenFromAPI = async () => {
 };
 
 export const getQuestions = async (token) => {
-  const response = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
-  const data = await response.json();
+  let response = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
+  let data = await response.json();
+  if (data.results.length === 0) {
+    const newToken = await getTokenFromAPI();
+    localStorage.setItem('token1', JSON.stringify(newToken));
+    const getToken = JSON.parse(localStorage.getItem('token1'));
+    response = await fetch(`https://opentdb.com/api.php?amount=5&token=${getToken}`);
+    data = await response.json();
+    return data;
+  }
   return data;
 };
