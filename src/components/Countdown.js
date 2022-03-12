@@ -46,9 +46,8 @@ class Countdown extends Component {
   }
 
   clearTimer() {
-    const { runningTimer } = this.state;
-
-    clearInterval(runningTimer);
+    // const { runningTimer } = this.state;
+    // clearInterval(runningTimer);
 
     this.setState({
       runningTimer: null,
