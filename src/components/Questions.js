@@ -31,6 +31,29 @@ class Questions extends Component {
       );
     }
 
+    createElements = (correct, incorrects) => {
+      const incorretsElements = incorrects.map((answer, index) => (
+        <button
+          key={ answer }
+          data-testid={ `wrong-answer-${index}` }
+          type="button"
+        >
+          { answer }
+        </button>
+      ));
+
+      const correctElement = (
+        <button
+          key={ correct }
+          data-testid="correct-answer"
+          type="button"
+        >
+          { correct }
+        </button>);
+
+      return [correctElement, ...incorretsElements];
+    }
+
     renderAnswers = () => {
       const { results } = this.props;
       const { currentQuestion } = this.state;
