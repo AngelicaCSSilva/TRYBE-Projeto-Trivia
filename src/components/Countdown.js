@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 class Countdown extends Component {
   render() {
     return (
@@ -8,6 +9,15 @@ class Countdown extends Component {
     );
   }
 }
+
+Countdown.propTypes = {
+  timer: PropTypes.number.isRequired,
+  isCountdownStopped: PropTypes.bool.isRequired,
+  maxDuration: PropTypes.number.isRequired,
+  updateTimer: PropTypes.func.isRequired,
+  resetTimer: PropTypes.func.isRequired,
+  stopTimer: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   timer: state.countdown.timer,
