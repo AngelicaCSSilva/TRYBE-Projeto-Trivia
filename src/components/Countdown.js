@@ -12,6 +12,19 @@ class Countdown extends Component {
   componentDidMount() {
     this.handleTimer();
   }
+
+  componentDidUpdate() {
+    const { runningTimer } = this.state;
+    const { timer, isCountdownStopped, stopTimer } = this.props;
+
+    // condição para limpar o timer: ter acabado o tempo ou o contador ter parado (jogador respondeu)
+    if ((timer === 0 || isCountdownStopped) && runningTimer) {
+      stopTimer();
+      this.clearTimer();
+    }
+
+  }
+
   handleTimer = () => {
     const { updateTimer } = this.props;
     const { intervalInSeconds } = this.state;
