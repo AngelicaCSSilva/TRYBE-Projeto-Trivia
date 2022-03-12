@@ -71,9 +71,11 @@ class Questions extends Component {
       // const selectedQuestion = allQuestions[currentQuestion];
       // console.log(allQuestions[currentQuestion].correct_answer);
 
-      // console.log(selectedQuestion.category);   nao consigo pegar as informaçoes
-      console.log(category);
-      // // const incorrectAnswers =
+      // [Desestruturação]
+      const {
+        correct_answer: correct,
+        incorrect_answers: incorrects } = results[currentQuestion];
+
     }
 
     render() {
