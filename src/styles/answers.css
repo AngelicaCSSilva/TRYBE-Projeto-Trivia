@@ -1,0 +1,22 @@
+/* Estilo botão genérico */
+.answers {
+  border-radius: 20px;
+  font-size: 15px;
+  margin: 5px;
+  padding: 10px;
+}
+
+/* Borda do botão genérico */
+.answers.hidden {
+  border: 3px solid grey;
+}
+
+/* Estilo resposta incorreta */
+.incorrect-answers {
+  border: 3px solid red;
+}
+
+/* Estilo resposta correto */
+.correct-answer {
+  border: 3px solid rgb(6, 240, 15);
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { saveQuestions, saveToken } from '../actions';
+import '../styles/answers.css';
 
 class Questions extends Component {
     state = {
