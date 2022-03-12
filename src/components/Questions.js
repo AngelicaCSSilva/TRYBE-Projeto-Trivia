@@ -109,9 +109,7 @@ class Questions extends Component {
 Questions.propTypes = {
   token: PropTypes.string.isRequired,
   saveAPIQuestions: PropTypes.func.isRequired,
-  // saveAPIToken: PropTypes.func.isRequired,
-  results: PropTypes.objectOf(PropTypes.array).isRequired,
-  // statusCode: PropTypes.objectOf(PropTypes.array).isRequired,
+  results: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const mapStateToProps = (state) => ({
