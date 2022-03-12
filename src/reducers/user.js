@@ -1,4 +1,4 @@
-import { ADD_EMAIL_NAME, SAVE_TOKEN } from '../actions';
+import { ADD_EMAIL_NAME } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -20,13 +20,4 @@ export function player(state = INITIAL_STATE, action) {
   }
 }
 
-const initialStateToken = {};
-
-export function token(state = initialStateToken, action) {
-  switch (action.type) {
-  case SAVE_TOKEN:
-    return action.token;
-  default:
-    return state;
-  }
-}
+export default player;
