@@ -46,6 +46,7 @@ class Questions extends Component {
           key={ answer }
           data-testid={ `wrong-answer-${index}` }
           type="button"
+          onClick={ this.handleClick }
         >
           { answer }
         </button>
@@ -56,6 +57,7 @@ class Questions extends Component {
           key={ correct }
           data-testid="correct-answer"
           type="button"
+          onClick={ this.handleClick }
         >
           { correct }
         </button>);
