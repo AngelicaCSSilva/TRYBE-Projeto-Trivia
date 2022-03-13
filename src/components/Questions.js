@@ -166,6 +166,9 @@ Questions.propTypes = {
   randomAnswers: PropTypes.arrayOf(PropTypes.array).isRequired,
   stopTimer: PropTypes.func.isRequired,
   saveRandomlyAnswersArray: PropTypes.func.isRequired,
+  durationInSeconds: PropTypes.number.isRequired,
+  timer: PropTypes.number.isRequired,
+  saveScoreValue: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
