@@ -175,6 +175,8 @@ const mapStateToProps = (state) => ({
   token: state.token,
   results: state.results.questions,
   randomAnswers: state.randomlyAnswers.array,
+  durationInSeconds: state.countdown.durationInSeconds,
+  timer: state.countdown.timer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -182,6 +184,7 @@ const mapDispatchToProps = (dispatch) => ({
   saveAPIToken: () => dispatch(saveToken()),
   stopTimer: () => dispatch(stopCountdown()),
   saveRandomlyAnswersArray: (array) => dispatch(saveRandomlyAnswers(array)),
+  saveScoreValue: (score) => dispatch(saveScore(score)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);
