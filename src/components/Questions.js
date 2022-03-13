@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { saveQuestions, saveToken, stopCountdown, saveRandomlyAnswers } from '../actions';
+import {
+  saveQuestions,
+  saveToken,
+  stopCountdown,
+  saveRandomlyAnswers,
+  saveScore,
+} from '../actions';
 import '../styles/answers.css';
 
 class Questions extends Component {
@@ -42,9 +48,37 @@ class Questions extends Component {
       );
     }
 
-    handleClick = () => {
-      const { stopTimer } = this.props;
+    // REQUISITO 9 DE ESCORE:
+    // switch para definir na função do score o nivel de dificuldade.
+    questionDifficulty = () => {
+      const { results } = this.props;
+      const { currentQuestion } = this.state;
+      const difficultyHard = 3;
+      const difficultyMedium = 2;
+      const difficultyEasy = 1;
+      switch (results[currentQuestion].difficulty) {
+      case 'hard':
+        return difficultyHard;
+      case 'medium':
+        return difficultyMedium;
+      default:
+        return difficultyEasy;
+      }
+    }
+    // saveScoreValue é chave no mapDispatch, pra atualizar o estado global do score;
+
+    handleClick = ({ target }) => {
+      const { stopTimer, durationInSeconds, timer, saveScoreValue } = this.props;
       stopTimer();
+      if (target.className === 'answers correct-answer hidden') {
+        const points = 10;
+        const score = points + ((durationInSeconds - timer) * this.questionDifficulty());
+        const getScore = localStorage.getItem('score') || 0;
+        const sum = Number(score) + Number(getScore);
+        localStorage.setItem('score', sum);
+        console.log(typeof getScore);
+        saveScoreValue(sum);
+      }
     }
 
     createElements = (correct, incorrects) => {
