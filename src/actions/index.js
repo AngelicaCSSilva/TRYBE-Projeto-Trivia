@@ -2,7 +2,8 @@ import { getTokenFromAPI, getQuestions } from '../services/API';
 
 // [ DADOS USER ]
 export const ADD_EMAIL_NAME = 'ADD_EMAIL_NAME';
-
+// SCORE!!
+export const SAVE_SCORE = 'SAVE_SCORE';
 // [ TOKEN ]
 export const SAVE_TOKEN = 'SAVE_TOKEN';
 
@@ -27,6 +28,12 @@ export function addEmailAndNameToState(objectEmailName) {
     payload: objectEmailName,
   };
 }
+
+// --- [ SCORE ]
+export const saveScore = (score) => ({
+  type: SAVE_SCORE,
+  score,
+});
 
 // --- [ TOKEN ]
 const saveTokenToState = (token) => ({
