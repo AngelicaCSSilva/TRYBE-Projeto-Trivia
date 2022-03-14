@@ -61,6 +61,18 @@ export const nextButton = (payload) => ({
   type: UPDATE_NEXT_BUTTON,
   payload,
 });
+
+// --- [ CURRENTQUESTIONS ]
+export const currentQuestions = (payload) => ({
+  type: CURRENT_QUESTIONS,
+  payload,
+});
+// --- [ REDIRECTTOFEEDBACK ]
+export const redirecttofeedback = (payload) => ({
+  type: REDIRECT_TO_FEEDBACK,
+  payload,
+});
+
 // --- [ QUESTIONS ]
 const requestQuestions = () => ({
   type: REQUEST_QUESTIONS,
