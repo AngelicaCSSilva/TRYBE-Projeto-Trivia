@@ -28,8 +28,19 @@ class NextQuestionButton extends React.Component {
      dispatchRedirectToFeedback(true);
    }
  }
+
  render() {
+   const { saveButtonState } = this.props;
    return (
+     saveButtonState && (
+       <button
+         data-testid="btn-next"
+         type="button"
+         onClick={ this.nextQuestion }
+       >
+         Próxima pergunta
+       </button>
+     )
    );
  }
 }
