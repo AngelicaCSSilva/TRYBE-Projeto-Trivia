@@ -178,6 +178,8 @@ Questions.propTypes = {
   durationInSeconds: PropTypes.number.isRequired,
   timer: PropTypes.number.isRequired,
   saveScoreValue: PropTypes.func.isRequired,
+  saveButtonState: PropTypes.bool.isRequired,
+  currentQuestion: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -186,6 +188,7 @@ const mapStateToProps = (state) => ({
   randomAnswers: state.randomlyAnswers.array,
   durationInSeconds: state.countdown.durationInSeconds,
   timer: state.countdown.timer,
+  currentQuestion: state.currentQuestions.currentQuestion,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -194,6 +197,7 @@ const mapDispatchToProps = (dispatch) => ({
   stopTimer: () => dispatch(stopCountdown()),
   saveRandomlyAnswersArray: (array) => dispatch(saveRandomlyAnswers(array)),
   saveScoreValue: (score) => dispatch(saveScore(score)),
+  saveButtonState: (bool) => dispatch(nextButton(bool)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);
