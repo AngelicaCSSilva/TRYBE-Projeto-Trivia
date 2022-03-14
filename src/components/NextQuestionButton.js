@@ -8,6 +8,16 @@ class NextQuestionButton extends React.Component {
  }
 }
 
+NextQuestionButton.propTypes = {
+  saveButtonState: PropTypes.bool.isRequired,
+  // results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  currentQuestion: PropTypes.number.isRequired,
+  dispatchCurrentQuestion: PropTypes.func.isRequired,
+  dispatchRedirectToFeedback: PropTypes.func.isRequired,
+  dispatchClearAnswers: PropTypes.func.isRequired,
+  dispatchResetCountdown: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   saveButtonState: state.nextQuestionButton.buttonIsTrue,
