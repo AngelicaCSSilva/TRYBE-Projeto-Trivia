@@ -37,6 +37,14 @@ class Questions extends React.Component {
       this.SaveToStateRandomlyAnswers();
     }
 
+    componentDidUpdate = () => {
+      const { currentQuestion } = this.props;
+      const lastPosition = 4;
+      if (currentQuestion <= lastPosition) {
+        this.SaveToStateRandomlyAnswers();
+      }
+    }
+
     renderQuestion = () => {
       const { results } = this.props;
       const { currentQuestion } = this.state;
