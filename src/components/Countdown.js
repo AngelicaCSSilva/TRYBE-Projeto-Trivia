@@ -15,7 +15,7 @@ class Countdown extends Component {
 
   componentDidUpdate() {
     const { runningTimer } = this.state;
-    const { timer, isCountdownStopped, stopTimer } = this.props;
+    const { timer, isCountdownStopped, stopTimer, durationInSeconds } = this.props;
 
     // condição para limpar o timer: ter acabado o tempo ou o contador ter parado (jogador respondeu)
     if ((timer === 0 || isCountdownStopped) && runningTimer) {
@@ -84,7 +84,7 @@ Countdown.propTypes = {
 const mapStateToProps = (state) => ({
   timer: state.countdown.timer,
   isCountdownStopped: state.countdown.isCountdownStopped,
-
+  durationInSeconds: state.countdown.durationInSeconds,
 });
 
 const mapDispatchToProps = (dispatch) => ({
