@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -7,13 +7,14 @@ import {
   stopCountdown,
   saveRandomlyAnswers,
   saveScore,
+  nextButton,
 } from '../actions';
 import '../styles/answers.css';
 
-class Questions extends Component {
-    state = {
-      currentQuestion: 0,
-    }
+class Questions extends React.Component {
+  // state = {
+  //   currentQuestion: 0,
+  // }
 
     // Ref.: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     getRandomNumber = (answersLength) => {
