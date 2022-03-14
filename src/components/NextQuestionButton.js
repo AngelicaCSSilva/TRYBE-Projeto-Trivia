@@ -9,6 +9,25 @@ import {
 } from '../actions';
 
 class NextQuestionButton extends React.Component {
+ nextQuestion = () => {
+   const {
+     dispatchCurrentQuestion,
+     dispatchRedirectToFeedback,
+     currentQuestion,
+     dispatchClearAnswers,
+     dispatchResetCountdown,
+   } = this.props;
+   const lastPosition = 4;
+   const teste = 3;
+   dispatchClearAnswers();
+   dispatchResetCountdown();
+   if (currentQuestion <= teste) {
+     dispatchCurrentQuestion(1);
+   }
+   if (currentQuestion === lastPosition) {
+     dispatchRedirectToFeedback(true);
+   }
+ }
  render() {
    return (
    );
