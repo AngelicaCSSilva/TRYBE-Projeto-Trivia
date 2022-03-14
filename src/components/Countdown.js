@@ -23,6 +23,10 @@ class Countdown extends Component {
       this.clearTimer();
       this.changeButtonStyles();
     }
+    if (timer === durationInSeconds && !isCountdownStopped && !runningTimer) {
+      this.handleTimer();
+    }
+  }
   }
 
   changeButtonStyles = () => {
