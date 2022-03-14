@@ -18,6 +18,8 @@ class Game extends Component {
   //   history.push('/play');
   // }
   render() {
+    const { history, redirectToFeedback } = this.props;
+    // const lastPosition = 4;
     return (
       <>
         <header>
@@ -26,6 +28,8 @@ class Game extends Component {
         <section>
           <Questions />
           <Countdown />
+          <NextQuestionButton />
+          {redirectToFeedback && history.push('/feedback')}
         </section>
       </>
     );
