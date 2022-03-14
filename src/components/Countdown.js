@@ -27,6 +27,10 @@ class Countdown extends Component {
       this.handleTimer();
     }
   }
+
+  componentWillUnmount() {
+    const { runningTimer } = this.state;
+    if (runningTimer) this.clearTimer();
   }
 
   changeButtonStyles = () => {
