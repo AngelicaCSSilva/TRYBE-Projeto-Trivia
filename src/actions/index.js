@@ -21,6 +21,9 @@ export const RESET_COUNTDOWN = 'RESET_COUNTDOWN';
 export const SAVE_RANDOMLY_ANSWERS = 'SAVE_RANDOMLY_ANSWERS';
 export const CLEAR_RANDOMLY_ANSWERS = 'CLEAR_RANDOMLY_ANSWERS';
 
+// [ NEXT QUESTION BUTTON ]
+export const UPDATE_NEXT_BUTTON = 'UPDATE_NEXT_BUTTON';
+
 // --- [ DADOS USER ]
 export function addEmailAndNameToState(objectEmailName) {
   return {
@@ -47,6 +50,11 @@ export const saveToken = () => async (dispatch) => {
   dispatch(saveTokenToState(token));
 };
 
+// --- [ NEXT BUTTON ]
+export const nextButton = (payload) => ({
+  type: UPDATE_NEXT_BUTTON,
+  payload,
+});
 // --- [ QUESTIONS ]
 const requestQuestions = () => ({
   type: REQUEST_QUESTIONS,
