@@ -24,6 +24,12 @@ export const CLEAR_RANDOMLY_ANSWERS = 'CLEAR_RANDOMLY_ANSWERS';
 // [ NEXT QUESTION BUTTON ]
 export const UPDATE_NEXT_BUTTON = 'UPDATE_NEXT_BUTTON';
 
+// [ CURRENTQUESTION ]
+export const CURRENT_QUESTIONS = 'CURRENT_QUESTIONS';
+
+// [ REDIRECTTOFEEDBACK ]
+export const REDIRECT_TO_FEEDBACK = 'REDIRECT_TO_FEEDBACK';
+
 // --- [ DADOS USER ]
 export function addEmailAndNameToState(objectEmailName) {
   return {
