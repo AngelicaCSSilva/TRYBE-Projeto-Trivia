@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -7,13 +7,14 @@ import {
   stopCountdown,
   saveRandomlyAnswers,
   saveScore,
+  nextButton,
 } from '../actions';
 import '../styles/answers.css';
 
-class Questions extends Component {
-    state = {
-      currentQuestion: 0,
-    }
+class Questions extends React.Component {
+  // state = {
+  //   currentQuestion: 0,
+  // }
 
     // Ref.: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     getRandomNumber = (answersLength) => {
@@ -36,9 +37,17 @@ class Questions extends Component {
       this.SaveToStateRandomlyAnswers();
     }
 
+    componentDidUpdate = () => {
+      const { currentQuestion } = this.props;
+      const lastPosition = 4;
+      if (currentQuestion <= lastPosition) {
+        this.SaveToStateRandomlyAnswers();
+      }
+    }
+
     renderQuestion = () => {
       const { results } = this.props;
-      const { currentQuestion } = this.state;
+      const { currentQuestion } = this.props;
       const { category, question } = results[currentQuestion];
       return (
         <div>
@@ -52,7 +61,7 @@ class Questions extends Component {
     // switch para definir na função do score o nivel de dificuldade.
     questionDifficulty = () => {
       const { results } = this.props;
-      const { currentQuestion } = this.state;
+      const { currentQuestion } = this.props;
       const difficultyHard = 3;
       const difficultyMedium = 2;
       const difficultyEasy = 1;
@@ -68,8 +77,13 @@ class Questions extends Component {
     // saveScoreValue é chave no mapDispatch, pra atualizar o estado global do score;
 
     handleClick = ({ target }) => {
-      const { stopTimer, durationInSeconds, timer, saveScoreValue } = this.props;
+      const {
+        stopTimer,
+        durationInSeconds,
+        timer, saveScoreValue,
+        saveButtonState } = this.props;
       stopTimer();
+      saveButtonState(true);
       if (target.className === 'answers correct-answer hidden') {
         const points = 10;
         const score = points + ((durationInSeconds - timer) * this.questionDifficulty());
@@ -110,7 +124,7 @@ class Questions extends Component {
 
     SaveToStateRandomlyAnswers = () => {
       const { results, saveRandomlyAnswersArray, randomAnswers } = this.props;
-      const { currentQuestion } = this.state;
+      const { currentQuestion } = this.props;
 
       if (randomAnswers.length === 0) {
       // [Desestruturação]
@@ -169,6 +183,8 @@ Questions.propTypes = {
   durationInSeconds: PropTypes.number.isRequired,
   timer: PropTypes.number.isRequired,
   saveScoreValue: PropTypes.func.isRequired,
+  saveButtonState: PropTypes.bool.isRequired,
+  currentQuestion: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -177,6 +193,7 @@ const mapStateToProps = (state) => ({
   randomAnswers: state.randomlyAnswers.array,
   durationInSeconds: state.countdown.durationInSeconds,
   timer: state.countdown.timer,
+  currentQuestion: state.currentQuestions.currentQuestion,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -185,6 +202,7 @@ const mapDispatchToProps = (dispatch) => ({
   stopTimer: () => dispatch(stopCountdown()),
   saveRandomlyAnswersArray: (array) => dispatch(saveRandomlyAnswers(array)),
   saveScoreValue: (score) => dispatch(saveScore(score)),
+  saveButtonState: (bool) => dispatch(nextButton(bool)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);
