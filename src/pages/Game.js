@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Countdown from '../components/Countdown';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
+import NextQuestionButton from '../components/NextQuestionButton';
 
-class Game extends Component {
+class Game extends React.Component {
   // handleChanges = ({ target }) => {
   //   const { name, value } = target;
   //   this.setState({
