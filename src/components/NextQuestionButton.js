@@ -7,3 +7,19 @@ class NextQuestionButton extends React.Component {
    );
  }
 }
+
+
+const mapStateToProps = (state) => ({
+  saveButtonState: state.nextQuestionButton.buttonIsTrue,
+  results: state.results.questions,
+  currentQuestion: state.currentQuestions.currentQuestion,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchCurrentQuestion: (position) => dispatch(currentQuestions(position)),
+  dispatchRedirectToFeedback: (bool) => dispatch(redirecttofeedback(bool)),
+  dispatchClearAnswers: () => dispatch(clearRandomlyAnswers()),
+  dispatchResetCountdown: () => dispatch(resetCountdown()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NextQuestionButton);
