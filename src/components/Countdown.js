@@ -15,7 +15,7 @@ class Countdown extends Component {
 
   componentDidUpdate() {
     const { runningTimer } = this.state;
-    const { timer, isCountdownStopped, stopTimer } = this.props;
+    const { timer, isCountdownStopped, stopTimer, durationInSeconds } = this.props;
 
     // condição para limpar o timer: ter acabado o tempo ou o contador ter parado (jogador respondeu)
     if ((timer === 0 || isCountdownStopped) && runningTimer) {
@@ -23,6 +23,14 @@ class Countdown extends Component {
       this.clearTimer();
       this.changeButtonStyles();
     }
+    if (timer === durationInSeconds && !isCountdownStopped && !runningTimer) {
+      this.handleTimer();
+    }
+  }
+
+  componentWillUnmount() {
+    const { runningTimer } = this.state;
+    if (runningTimer) this.clearTimer();
   }
 
   changeButtonStyles = () => {
@@ -72,6 +80,7 @@ class Countdown extends Component {
 Countdown.propTypes = {
   timer: PropTypes.number.isRequired,
   isCountdownStopped: PropTypes.bool.isRequired,
+  durationInSeconds: PropTypes.number.isRequired,
   updateTimer: PropTypes.func.isRequired,
   resetTimer: PropTypes.func.isRequired,
   stopTimer: PropTypes.func.isRequired,
@@ -80,7 +89,7 @@ Countdown.propTypes = {
 const mapStateToProps = (state) => ({
   timer: state.countdown.timer,
   isCountdownStopped: state.countdown.isCountdownStopped,
-
+  durationInSeconds: state.countdown.durationInSeconds,
 });
 
 const mapDispatchToProps = (dispatch) => ({
