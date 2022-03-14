@@ -20,8 +20,8 @@ class NextQuestionButton extends React.Component {
    const lastPosition = 4;
    const teste = 3;
    dispatchClearAnswers();
-   dispatchResetCountdown();
    if (currentQuestion <= teste) {
+     dispatchResetCountdown();
      dispatchCurrentQuestion(1);
    }
    if (currentQuestion === lastPosition) {
