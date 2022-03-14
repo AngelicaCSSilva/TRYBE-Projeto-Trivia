@@ -80,6 +80,7 @@ class Countdown extends Component {
 Countdown.propTypes = {
   timer: PropTypes.number.isRequired,
   isCountdownStopped: PropTypes.bool.isRequired,
+  durationInSeconds: PropTypes.number.isRequired,
   updateTimer: PropTypes.func.isRequired,
   resetTimer: PropTypes.func.isRequired,
   stopTimer: PropTypes.func.isRequired,
