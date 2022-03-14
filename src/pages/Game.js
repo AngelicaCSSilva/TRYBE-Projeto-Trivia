@@ -32,4 +32,17 @@ class Game extends Component {
   }
 }
 
-export default Game;
+Game.propTypes = {
+  // results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  // currentQuestion: PropTypes.number.isRequired,
+  redirectToFeedback: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  results: state.results.questions,
+  currentQuestion: state.currentQuestions.currentQuestion,
+  redirectToFeedback: state.currentQuestions.redirectToFeedback,
+});
+
+export default connect(mapStateToProps)(Game);
