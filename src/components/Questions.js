@@ -47,7 +47,7 @@ class Questions extends React.Component {
 
     renderQuestion = () => {
       const { results } = this.props;
-      const { currentQuestion } = this.state;
+      const { currentQuestion } = this.props;
       const { category, question } = results[currentQuestion];
       return (
         <div>
@@ -61,7 +61,7 @@ class Questions extends React.Component {
     // switch para definir na função do score o nivel de dificuldade.
     questionDifficulty = () => {
       const { results } = this.props;
-      const { currentQuestion } = this.state;
+      const { currentQuestion } = this.props;
       const difficultyHard = 3;
       const difficultyMedium = 2;
       const difficultyEasy = 1;
@@ -119,7 +119,7 @@ class Questions extends React.Component {
 
     SaveToStateRandomlyAnswers = () => {
       const { results, saveRandomlyAnswersArray, randomAnswers } = this.props;
-      const { currentQuestion } = this.state;
+      const { currentQuestion } = this.props;
 
       if (randomAnswers.length === 0) {
       // [Desestruturação]
