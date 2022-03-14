@@ -77,8 +77,13 @@ class Questions extends React.Component {
     // saveScoreValue é chave no mapDispatch, pra atualizar o estado global do score;
 
     handleClick = ({ target }) => {
-      const { stopTimer, durationInSeconds, timer, saveScoreValue } = this.props;
+      const {
+        stopTimer,
+        durationInSeconds,
+        timer, saveScoreValue,
+        saveButtonState } = this.props;
       stopTimer();
+      saveButtonState(true);
       if (target.className === 'answers correct-answer hidden') {
         const points = 10;
         const score = points + ((durationInSeconds - timer) * this.questionDifficulty());
