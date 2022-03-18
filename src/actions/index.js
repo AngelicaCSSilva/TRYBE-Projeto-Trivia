@@ -13,6 +13,7 @@ export const SAVE_TOKEN = 'SAVE_TOKEN';
 export const GET_QUESTIONS_SUCCESS = 'GET_QUESTIONS_SUCCESS';
 export const GET_QUESTIONS_ERROR = 'GET_QUESTIONS_ERROR';
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
+export const RESET_QUESTIONS = 'RESET_QUESTIONS';
 
 // [ COUNTDOWN ]
 export const UPDATE_COUNTDOWN = 'UPDATE_COUNTDOWN';
@@ -92,6 +93,10 @@ const getQuestionsSuccess = (response) => ({
 const getQuestionsError = (error) => ({
   type: GET_QUESTIONS_ERROR,
   payload: error,
+});
+
+export const resetQuestions = () => ({
+  type: RESET_QUESTIONS,
 });
 
 export const saveQuestions = (token) => async (dispatch) => {
