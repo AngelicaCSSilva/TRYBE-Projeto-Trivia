@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import md5 from 'crypto-js/md5';
+import PropTypes from 'prop-types';
 
 class Ranking extends React.Component {
   render() {
