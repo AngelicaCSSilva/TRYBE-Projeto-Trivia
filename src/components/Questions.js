@@ -31,9 +31,7 @@ class Questions extends React.Component {
       return randomlyArrangedAnswers;
     }
 
-    componentDidMount = async () => {
-      const { token, saveAPIQuestions } = this.props;
-      await saveAPIQuestions(token);
+    componentDidMount = () => {
       this.SaveToStateRandomlyAnswers();
       localStorage.setItem('score', 0);
     }
@@ -87,7 +85,7 @@ class Questions extends React.Component {
       saveButtonState(true);
       if (target.className === 'answers correct-answer hidden') {
         const points = 10;
-        const score = points + ((durationInSeconds - timer) * this.questionDifficulty());
+        const score = points + (timer * this.questionDifficulty());
         const getScore = localStorage.getItem('score') || 0;
         const sum = Number(score) + Number(getScore);
         localStorage.setItem('score', sum);
