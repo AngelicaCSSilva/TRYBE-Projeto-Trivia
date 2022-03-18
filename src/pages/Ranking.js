@@ -20,18 +20,18 @@ class Ranking extends React.Component {
    return JSON.parse(localStorage.getItem('ranking'));
  }
 
-  render() {
+ render() {
    const getLocalStorageRanking = this.getRanking();
    const rankingSort = getLocalStorageRanking.sort(({ score: a }, { score: b }) => b - a);
 
-    return (
-      <section>
-        <h1 data-testid="ranking-title">Tela de Ranking</h1>
-        <Link to="/">
-          <button type="button" data-testid="btn-go-home">
-            Inicio
-          </button>
-        </Link>
+   return (
+     <section>
+       <h1 data-testid="ranking-title">Tela de Ranking</h1>
+       <Link to="/">
+         <button type="button" data-testid="btn-go-home">
+           Inicio
+         </button>
+       </Link>
        { rankingSort.map((userRanking, index) => (
          <div key={ userRanking.name }>
            <p data-testid={ `player-name-${index}` }>{ userRanking.name }</p>
@@ -39,9 +39,9 @@ class Ranking extends React.Component {
            <img src={ userRanking.name } alt="imagem de perfil" />
          </div>
        ))}
-      </section>
-    );
-  }
+     </section>
+   );
+ }
 }
 
 Ranking.propTypes = {
