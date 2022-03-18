@@ -88,6 +88,10 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  token: state.token,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   saveAPIQuestions: (token) => dispatch(saveQuestions(token)),
   playClick: (objectEmailName) => dispatch(addEmailAndNameToState(objectEmailName)),
