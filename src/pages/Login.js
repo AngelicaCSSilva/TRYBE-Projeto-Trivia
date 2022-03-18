@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import logo from '../trivia.png';
-import { addEmailAndNameToState, saveToken } from '../actions';
+import {
+  addEmailAndNameToState,
+  saveToken,
+  redirecttofeedback,
+  saveQuestions,
+} from '../actions';
 
 class Login extends Component {
   state = {
