@@ -5,6 +5,21 @@ import md5 from 'crypto-js/md5';
 import PropTypes from 'prop-types';
 
 class Ranking extends React.Component {
+ getRanking = () => {
+   const { name, score, emailFromUser } = this.props;
+   const hash = md5(emailFromUser).toString();
+   const img = `https://www.gravatar.com/avatar/${hash}`;
+   const ranking = { name, score, img };
+   const getRanking = JSON.parse(localStorage.getItem('ranking'));
+   if (getRanking === null) {
+     localStorage.setItem('ranking', JSON.stringify([ranking]));
+   } else {
+     const spreadGetRanking = [...getRanking, ranking];
+     localStorage.setItem('ranking', JSON.stringify(spreadGetRanking));
+   }
+   return JSON.parse(localStorage.getItem('ranking'));
+ }
+
   render() {
     return (
       <section>
