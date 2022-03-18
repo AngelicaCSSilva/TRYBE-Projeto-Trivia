@@ -18,9 +18,8 @@ class NextQuestionButton extends React.Component {
      dispatchResetCountdown,
    } = this.props;
    const lastPosition = 4;
-   const teste = 3;
    dispatchClearAnswers();
-   if (currentQuestion <= teste) {
+   if (currentQuestion <= (lastPosition - 1)) {
      dispatchResetCountdown();
      dispatchCurrentQuestion(1);
    }
@@ -47,8 +46,6 @@ class NextQuestionButton extends React.Component {
 
 NextQuestionButton.propTypes = {
   saveButtonState: PropTypes.bool.isRequired,
-  // results: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   currentQuestion: PropTypes.number.isRequired,
   dispatchCurrentQuestion: PropTypes.func.isRequired,
   dispatchRedirectToFeedback: PropTypes.func.isRequired,
