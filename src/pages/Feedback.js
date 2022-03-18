@@ -33,7 +33,11 @@ class Feedback extends React.Component {
         </Link>
 
         <Link to="/ranking">
-          <button type="button" data-testid="btn-ranking">
+          <button
+            type="button"
+            data-testid="btn-ranking"
+            onClick={ this.hendleRanking }
+          >
             Ranking
           </button>
         </Link>
