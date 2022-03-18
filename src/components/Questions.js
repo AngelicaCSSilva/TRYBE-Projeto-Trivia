@@ -12,10 +12,6 @@ import {
 import '../styles/answers.css';
 
 class Questions extends React.Component {
-  // state = {
-  //   currentQuestion: 0,
-  // }
-
     // Ref.: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     getRandomNumber = (answersLength) => {
       const max = Math.floor(answersLength);
@@ -78,7 +74,6 @@ class Questions extends React.Component {
     handleClick = ({ target }) => {
       const {
         stopTimer,
-        durationInSeconds,
         timer, saveScoreValue,
         saveButtonState } = this.props;
       stopTimer();
@@ -89,7 +84,6 @@ class Questions extends React.Component {
         const getScore = localStorage.getItem('score') || 0;
         const sum = Number(score) + Number(getScore);
         localStorage.setItem('score', sum);
-        console.log(typeof getScore);
         saveScoreValue(sum);
       }
     }
@@ -173,13 +167,10 @@ class Questions extends React.Component {
 }
 
 Questions.propTypes = {
-  token: PropTypes.string.isRequired,
-  saveAPIQuestions: PropTypes.func.isRequired,
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
   randomAnswers: PropTypes.arrayOf(PropTypes.array).isRequired,
   stopTimer: PropTypes.func.isRequired,
   saveRandomlyAnswersArray: PropTypes.func.isRequired,
-  durationInSeconds: PropTypes.number.isRequired,
   timer: PropTypes.number.isRequired,
   saveScoreValue: PropTypes.func.isRequired,
   saveButtonState: PropTypes.bool.isRequired,
