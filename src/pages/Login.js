@@ -7,7 +7,6 @@ import {
   addEmailAndNameToState,
   saveToken,
   redirecttofeedback,
-  saveQuestions,
 } from '../actions';
 
 class Login extends Component {
@@ -30,10 +29,9 @@ class Login extends Component {
 
   handleClick = async () => {
     const { email, name } = this.state;
-    const { playClick, saveAPIToken, history, token, saveAPIQuestions } = this.props;
+    const { playClick, saveAPIToken, history } = this.props;
     playClick({ email, name });
     await saveAPIToken();
-    await saveAPIQuestions(token);
     history.push('/game');
   }
 
@@ -89,20 +87,13 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  token: state.token,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  saveAPIQuestions: (token) => dispatch(saveQuestions(token)),
   playClick: (objectEmailName) => dispatch(addEmailAndNameToState(objectEmailName)),
   saveAPIToken: () => dispatch(saveToken()),
   dispatchRedirectToFeedback: (bool) => dispatch(redirecttofeedback(bool)),
 });
 
 Login.propTypes = {
-  token: PropTypes.string.isRequired,
-  saveAPIQuestions: PropTypes.func.isRequired,
   dispatchRedirectToFeedback: PropTypes.func.isRequired,
   playClick: PropTypes.func.isRequired,
   saveAPIToken: PropTypes.func.isRequired,
@@ -111,4 +102,4 @@ Login.propTypes = {
   }).isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

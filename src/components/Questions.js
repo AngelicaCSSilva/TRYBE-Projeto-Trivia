@@ -27,7 +27,9 @@ class Questions extends React.Component {
       return randomlyArrangedAnswers;
     }
 
-    componentDidMount = () => {
+    componentDidMount = async () => {
+      const { token, saveAPIQuestions } = this.props;
+      await saveAPIQuestions(token);
       this.SaveToStateRandomlyAnswers();
       localStorage.setItem('score', 0);
     }
@@ -167,6 +169,8 @@ class Questions extends React.Component {
 }
 
 Questions.propTypes = {
+  token: PropTypes.string.isRequired,
+  saveAPIQuestions: PropTypes.func.isRequired,
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
   randomAnswers: PropTypes.arrayOf(PropTypes.array).isRequired,
   stopTimer: PropTypes.func.isRequired,
