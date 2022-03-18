@@ -30,9 +30,10 @@ class Login extends Component {
 
   handleClick = async () => {
     const { email, name } = this.state;
-    const { playClick, saveAPIToken, history } = this.props;
+    const { playClick, saveAPIToken, history, token, saveAPIQuestions } = this.props;
     playClick({ email, name });
     await saveAPIToken();
+    await saveAPIQuestions(token);
     history.push('/game');
   }
 
@@ -100,6 +101,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Login.propTypes = {
+  token: PropTypes.string.isRequired,
+  saveAPIQuestions: PropTypes.func.isRequired,
+  dispatchRedirectToFeedback: PropTypes.func.isRequired,
   playClick: PropTypes.func.isRequired,
   saveAPIToken: PropTypes.func.isRequired,
   history: PropTypes.shape({
