@@ -16,6 +16,11 @@ class Login extends Component {
     name: '',
   }
 
+  componentDidMount = () => {
+    const { dispatchRedirectToFeedback } = this.props;
+    dispatchRedirectToFeedback(false);
+  }
+
   handleChanges = ({ target }) => {
     const { name, value } = target;
     this.setState({
