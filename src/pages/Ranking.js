@@ -16,4 +16,16 @@ class Ranking extends React.Component {
   }
 }
 
-export default Ranking;
+Ranking.propTypes = {
+  emailFromUser: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  name: state.player.name,
+  score: state.player.score,
+  emailFromUser: state.player.gravatarEmail,
+});
+
+export default connect(mapStateToProps)(Ranking);
