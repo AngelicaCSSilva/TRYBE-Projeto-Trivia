@@ -16,6 +16,7 @@ export function currentQuestions(state = initialStateBtn, action) {
     return {
       ...state,
       redirectToFeedback: action.payload,
+      currentQuestion: 0,
     };
   default:
     return state;
