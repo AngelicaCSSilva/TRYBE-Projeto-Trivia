@@ -35,6 +35,7 @@ class Questions extends React.Component {
       const { token, saveAPIQuestions } = this.props;
       await saveAPIQuestions(token);
       this.SaveToStateRandomlyAnswers();
+      localStorage.setItem('score', 0);
     }
 
     componentDidUpdate = () => {
