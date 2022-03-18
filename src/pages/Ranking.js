@@ -21,6 +21,9 @@ class Ranking extends React.Component {
  }
 
   render() {
+   const getLocalStorageRanking = this.getRanking();
+   const rankingSort = getLocalStorageRanking.sort(({ score: a }, { score: b }) => b - a);
+
     return (
       <section>
         <h1 data-testid="ranking-title">Tela de Ranking</h1>
@@ -29,6 +32,13 @@ class Ranking extends React.Component {
             Inicio
           </button>
         </Link>
+       { rankingSort.map((userRanking, index) => (
+         <div key={ userRanking.name }>
+           <p data-testid={ `player-name-${index}` }>{ userRanking.name }</p>
+           <p data-testid={ `player-score-${index}` }>{ userRanking.score }</p>
+           <img src={ userRanking.name } alt="imagem de perfil" />
+         </div>
+       ))}
       </section>
     );
   }
