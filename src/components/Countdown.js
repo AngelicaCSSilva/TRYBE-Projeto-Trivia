@@ -10,6 +10,8 @@ class Countdown extends Component {
   }
 
   componentDidMount() {
+    const { resetTimer } = this.props;
+    resetTimer();
     this.handleTimer();
   }
 
