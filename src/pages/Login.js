@@ -7,6 +7,8 @@ import {
   addEmailAndNameToState,
   saveToken,
   redirecttofeedback,
+  resetQuestions,
+  resetUser,
 } from '../actions';
 
 class Login extends Component {
@@ -16,7 +18,13 @@ class Login extends Component {
   }
 
   componentDidMount = () => {
-    const { dispatchRedirectToFeedback } = this.props;
+    const {
+      dispatchRedirectToFeedback,
+      resetStateQuestions,
+      resetUserState,
+    } = this.props;
+    resetStateQuestions();
+    resetUserState();
     dispatchRedirectToFeedback(false);
   }
 
@@ -91,12 +99,16 @@ const mapDispatchToProps = (dispatch) => ({
   playClick: (objectEmailName) => dispatch(addEmailAndNameToState(objectEmailName)),
   saveAPIToken: () => dispatch(saveToken()),
   dispatchRedirectToFeedback: (bool) => dispatch(redirecttofeedback(bool)),
+  resetStateQuestions: () => dispatch(resetQuestions()),
+  resetUserState: () => dispatch(resetUser()),
 });
 
 Login.propTypes = {
   dispatchRedirectToFeedback: PropTypes.func.isRequired,
   playClick: PropTypes.func.isRequired,
   saveAPIToken: PropTypes.func.isRequired,
+  resetStateQuestions: PropTypes.func.isRequired,
+  resetUserState: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
