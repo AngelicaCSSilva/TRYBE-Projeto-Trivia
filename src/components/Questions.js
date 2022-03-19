@@ -177,7 +177,7 @@ Questions.propTypes = {
   saveRandomlyAnswersArray: PropTypes.func.isRequired,
   timer: PropTypes.number.isRequired,
   saveScoreValue: PropTypes.func.isRequired,
-  saveButtonState: PropTypes.bool.isRequired,
+  saveButtonState: PropTypes.func.isRequired,
   currentQuestion: PropTypes.number.isRequired,
 };
 
