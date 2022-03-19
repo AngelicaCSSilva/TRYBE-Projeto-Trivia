@@ -1,5 +1,9 @@
 import {
-  GET_QUESTIONS_SUCCESS, GET_QUESTIONS_ERROR, REQUEST_QUESTIONS } from '../actions';
+  GET_QUESTIONS_SUCCESS,
+  GET_QUESTIONS_ERROR,
+  REQUEST_QUESTIONS,
+  RESET_QUESTIONS,
+} from '../actions';
 
 const initialStateQuestions = {
   isLoading: false,
@@ -15,6 +19,8 @@ export function results(state = initialStateQuestions, action) {
     return { ...state, isLoading: false, questions: action.payload };
   case GET_QUESTIONS_ERROR:
     return { ...state, isLoading: false, errorMessage: action.payload };
+  case RESET_QUESTIONS:
+    return { ...state, questions: [] };
   default:
     return state;
   }
