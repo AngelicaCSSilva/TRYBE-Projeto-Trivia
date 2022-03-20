@@ -3,12 +3,29 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import logo from '../trivia.png';
-import { addEmailAndNameToState, saveToken } from '../actions';
+import {
+  addEmailAndNameToState,
+  saveToken,
+  redirecttofeedback,
+  resetQuestions,
+  resetUser,
+} from '../actions';
 
 class Login extends Component {
   state = {
     email: '',
     name: '',
+  }
+
+  componentDidMount = () => {
+    const {
+      dispatchRedirectToFeedback,
+      resetStateQuestions,
+      resetUserState,
+    } = this.props;
+    resetStateQuestions();
+    resetUserState();
+    dispatchRedirectToFeedback(false);
   }
 
   handleChanges = ({ target }) => {
@@ -81,11 +98,17 @@ class Login extends Component {
 const mapDispatchToProps = (dispatch) => ({
   playClick: (objectEmailName) => dispatch(addEmailAndNameToState(objectEmailName)),
   saveAPIToken: () => dispatch(saveToken()),
+  dispatchRedirectToFeedback: (bool) => dispatch(redirecttofeedback(bool)),
+  resetStateQuestions: () => dispatch(resetQuestions()),
+  resetUserState: () => dispatch(resetUser()),
 });
 
 Login.propTypes = {
+  dispatchRedirectToFeedback: PropTypes.func.isRequired,
   playClick: PropTypes.func.isRequired,
   saveAPIToken: PropTypes.func.isRequired,
+  resetStateQuestions: PropTypes.func.isRequired,
+  resetUserState: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

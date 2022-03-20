@@ -12,10 +12,6 @@ import {
 import '../styles/answers.css';
 
 class Questions extends React.Component {
-  // state = {
-  //   currentQuestion: 0,
-  // }
-
     // Ref.: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     getRandomNumber = (answersLength) => {
       const max = Math.floor(answersLength);
@@ -35,6 +31,7 @@ class Questions extends React.Component {
       const { token, saveAPIQuestions } = this.props;
       await saveAPIQuestions(token);
       this.SaveToStateRandomlyAnswers();
+      localStorage.setItem('score', 0);
     }
 
     componentDidUpdate = () => {
@@ -79,18 +76,16 @@ class Questions extends React.Component {
     handleClick = ({ target }) => {
       const {
         stopTimer,
-        durationInSeconds,
         timer, saveScoreValue,
         saveButtonState } = this.props;
       stopTimer();
       saveButtonState(true);
       if (target.className === 'answers correct-answer hidden') {
         const points = 10;
-        const score = points + ((durationInSeconds - timer) * this.questionDifficulty());
+        const score = points + (timer * this.questionDifficulty());
         const getScore = localStorage.getItem('score') || 0;
         const sum = Number(score) + Number(getScore);
         localStorage.setItem('score', sum);
-        console.log(typeof getScore);
         saveScoreValue(sum);
       }
     }
@@ -180,10 +175,9 @@ Questions.propTypes = {
   randomAnswers: PropTypes.arrayOf(PropTypes.array).isRequired,
   stopTimer: PropTypes.func.isRequired,
   saveRandomlyAnswersArray: PropTypes.func.isRequired,
-  durationInSeconds: PropTypes.number.isRequired,
   timer: PropTypes.number.isRequired,
   saveScoreValue: PropTypes.func.isRequired,
-  saveButtonState: PropTypes.bool.isRequired,
+  saveButtonState: PropTypes.func.isRequired,
   currentQuestion: PropTypes.number.isRequired,
 };
 

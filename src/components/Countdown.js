@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { updateCountdown, resetCountdown, stopCountdown } from '../actions';
+import { updateCountdown, resetCountdown, stopCountdown, nextButton } from '../actions';
 
 class Countdown extends Component {
   state = {
@@ -10,16 +10,18 @@ class Countdown extends Component {
   }
 
   componentDidMount() {
+    const { resetTimer } = this.props;
+    resetTimer();
     this.handleTimer();
   }
 
   componentDidUpdate() {
     const { runningTimer } = this.state;
-    const { timer, isCountdownStopped, stopTimer, durationInSeconds } = this.props;
+    const { timer, isCountdownStopped, saveButtonState, durationInSeconds } = this.props;
 
     // condição para limpar o timer: ter acabado o tempo ou o contador ter parado (jogador respondeu)
     if ((timer === 0 || isCountdownStopped) && runningTimer) {
-      stopTimer();
+      saveButtonState(true);
       this.clearTimer();
       this.changeButtonStyles();
     }
@@ -83,7 +85,7 @@ Countdown.propTypes = {
   durationInSeconds: PropTypes.number.isRequired,
   updateTimer: PropTypes.func.isRequired,
   resetTimer: PropTypes.func.isRequired,
-  stopTimer: PropTypes.func.isRequired,
+  saveButtonState: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -96,6 +98,7 @@ const mapDispatchToProps = (dispatch) => ({
   updateTimer: () => dispatch(updateCountdown()),
   resetTimer: () => dispatch(resetCountdown()),
   stopTimer: () => dispatch(stopCountdown()),
+  saveButtonState: (bool) => dispatch(nextButton(bool)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Countdown);

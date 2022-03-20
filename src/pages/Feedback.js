@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import { clearRandomlyAnswers } from '../actions';
 
 class Feedback extends React.Component {
+  componentDidMount() {
+    const { clearAnswers } = this.props;
+    clearAnswers();
+  }
+
   render() {
     const { userAssertions, userScore } = this.props;
-    console.log(userAssertions);
     const MIN_POINTS = 2;
     return (
       <section>
@@ -33,7 +38,11 @@ class Feedback extends React.Component {
         </Link>
 
         <Link to="/ranking">
-          <button type="button" data-testid="btn-ranking">
+          <button
+            type="button"
+            data-testid="btn-ranking"
+            onClick={ this.hendleRanking }
+          >
             Ranking
           </button>
         </Link>
@@ -45,6 +54,7 @@ class Feedback extends React.Component {
 Feedback.propTypes = {
   userAssertions: PropTypes.number.isRequired,
   userScore: PropTypes.number.isRequired,
+  clearAnswers: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -52,4 +62,8 @@ const mapStateToProps = (state) => ({
   userScore: state.player.score,
 });
 
-export default connect(mapStateToProps)(Feedback);
+const mapDispatchToProps = (dispatch) => ({
+  clearAnswers: () => dispatch(clearRandomlyAnswers()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feedback);

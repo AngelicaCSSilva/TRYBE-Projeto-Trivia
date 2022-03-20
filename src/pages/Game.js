@@ -7,22 +7,8 @@ import Questions from '../components/Questions';
 import NextQuestionButton from '../components/NextQuestionButton';
 
 class Game extends React.Component {
-  // handleChanges = ({ target }) => {
-  //   const { name, value } = target;
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // }
-
-  // handleClick = () => {
-  //   const { email } = this.state;
-  //   const { userClick, history } = this.props;
-  //   userClick(email);
-  //   history.push('/play');
-  // }
   render() {
     const { history, redirectToFeedback } = this.props;
-    // const lastPosition = 4;
     return (
       <>
         <header>
@@ -40,9 +26,7 @@ class Game extends React.Component {
 }
 
 Game.propTypes = {
-  // results: PropTypes.arrayOf(PropTypes.object).isRequired,
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
-  // currentQuestion: PropTypes.number.isRequired,
   redirectToFeedback: PropTypes.bool.isRequired,
 };
 

@@ -1,4 +1,4 @@
-import { ADD_EMAIL_NAME, SAVE_SCORE } from '../actions';
+import { ADD_EMAIL_NAME, SAVE_SCORE, RESET_USER } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -20,6 +20,13 @@ export function player(state = INITIAL_STATE, action) {
       ...state,
       score: action.score,
       assertions: state.assertions + 1,
+    };
+  case RESET_USER:
+    return {
+      name: '',
+      assertions: 0,
+      score: 0,
+      gravatarEmail: '',
     };
   default:
     return state;
