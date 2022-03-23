@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -8,6 +9,24 @@ import {
   resetCountdown,
   nextButton,
 } from '../actions';
+
+const NextButtonStyled = styled.button`
+position: relative;
+  display: inline-block;
+  margin: 30px 15px;
+  padding: 15px 40px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #764ba2;
+  background: white;
+  transition: ease-out 0.5s;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-radius: 50px;
+  -webkit-box-shadow: 8px 10px 31px 9px rgba(0,0,0,0.3); 
+  box-shadow: 8px 10px 31px 9px rgba(0,0,0,0.3);
+`;
 
 class NextQuestionButton extends React.Component {
  nextQuestion = () => {
@@ -35,13 +54,13 @@ class NextQuestionButton extends React.Component {
    const { saveButtonState } = this.props;
    return (
      saveButtonState && (
-       <button
+       <NextButtonStyled
          data-testid="btn-next"
          type="button"
          onClick={ this.nextQuestion }
        >
          Próxima pergunta
-       </button>
+       </NextButtonStyled>
      )
    );
  }
