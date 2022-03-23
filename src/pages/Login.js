@@ -18,6 +18,7 @@ class Login extends Component {
   }
 
   componentDidMount = () => {
+    document.title = 'Trivia';
     const {
       dispatchRedirectToFeedback,
       resetStateQuestions,
