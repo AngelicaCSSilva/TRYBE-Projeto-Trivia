@@ -1,4 +1,5 @@
 import React from 'react';
+import sanitizeHtml from 'sanitize-html';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
