@@ -7,6 +7,10 @@ import Questions from '../components/Questions';
 import NextQuestionButton from '../components/NextQuestionButton';
 
 class Game extends React.Component {
+  componentDidMount() {
+    document.title = 'Trivia - Jogando...';
+  }
+
   render() {
     const { history, redirectToFeedback } = this.props;
     return (
