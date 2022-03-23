@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Countdown from '../components/Countdown';
@@ -6,6 +7,12 @@ import Header from '../components/Header';
 import Questions from '../components/Questions';
 import NextQuestionButton from '../components/NextQuestionButton';
 
+const GameSectionStyled = styled.section`
+  margin: 2vh;
+  padding: 1vh;
+  border-radius: 50px;
+  background-color: rgb(250, 250, 250, 0.6);
+`;
 class Game extends React.Component {
   componentDidMount() {
     document.title = 'Trivia - Jogando...';
@@ -18,12 +25,12 @@ class Game extends React.Component {
         <header>
           <Header />
         </header>
-        <section>
+        <GameSectionStyled>
           <Questions />
           <Countdown />
-          <NextQuestionButton />
-          {redirectToFeedback && history.push('/feedback')}
-        </section>
+        </GameSectionStyled>
+        <NextQuestionButton />
+        {redirectToFeedback && history.push('/feedback')}
       </>
     );
   }
