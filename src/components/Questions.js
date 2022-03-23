@@ -81,7 +81,7 @@ class Questions extends React.Component {
         saveButtonState } = this.props;
       stopTimer();
       saveButtonState(true);
-      if (target.className === 'answers correct-answer hidden') {
+      if (target.className.includes('answers correct-answer')) {
         const points = 10;
         const score = points + (timer * this.questionDifficulty());
         const getScore = localStorage.getItem('score') || 0;
