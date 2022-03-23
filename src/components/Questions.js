@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import sanitizeHtml from 'sanitize-html';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -12,6 +13,49 @@ import {
 } from '../actions';
 import '../styles/answers.css';
 
+const QuestionDivStyled = styled.div`
+margin: 2vh;
+padding: 2vh;
+border-radius: 50px;
+background-color: rgb(250, 250, 250, 0.6);
+`;
+
+const AnswersDivStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+`;
+
+const AnswersStyled = styled.button`
+border-radius: 20px;
+font-size: 3vh;
+margin: 5px;
+padding: 3vw;
+width: 50vw;
+margin: 1vh 0;
+
+@media ( min-width : 768px ) {
+  padding: 2vw;
+  width: 40vw;
+}
+@media ( min-width : 1024px ) {
+  font-size: 3.2vh;
+}
+`;
+
+const CategoryStyled = styled.p`
+  color: #667eea;
+  font-weight: 600;
+  padding-bottom: 1vh;
+  margin-bottom: 1.7vh;
+  border-bottom: solid 1px #667eea;
+`;
+
+const QuestionStyled = styled.p`
+`;
 class Questions extends React.Component {
     // Ref.: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     getRandomNumber = (answersLength) => {
@@ -48,10 +92,10 @@ class Questions extends React.Component {
       const { currentQuestion } = this.props;
       const { category, question } = results[currentQuestion];
       return (
-        <div>
-          <p data-testid="question-category">{category}</p>
-          <p data-testid="question-text">{ question }</p>
-        </div>
+        <QuestionDivStyled>
+          <CategoryStyled data-testid="question-category" dangerouslySetInnerHTML={ { __html: sanitizeHtml(category) } } />
+          <QuestionStyled data-testid="question-text" dangerouslySetInnerHTML={ { __html: sanitizeHtml(question) } } />
+        </QuestionDivStyled>
       );
     }
 
@@ -93,27 +137,26 @@ class Questions extends React.Component {
 
     createElements = (correct, incorrects) => {
       const incorretsElements = incorrects.map((answer, index) => (
-        <button
+        <AnswersStyled
           key={ answer }
           data-testid={ `wrong-answer-${index}` }
           type="button"
           className="answers incorrect-answers hidden"
           onClick={ this.handleClick }
-        >
-          { answer }
-        </button>
+          dangerouslySetInnerHTML={ { __html: sanitizeHtml(answer) } }
+        />
       ));
 
       const correctElement = (
-        <button
+        <AnswersStyled
           key={ correct }
           data-testid="correct-answer"
           type="button"
           className="answers correct-answer hidden"
           onClick={ this.handleClick }
-        >
-          { correct }
-        </button>);
+          dangerouslySetInnerHTML={ { __html: sanitizeHtml(correct) } }
+        />
+      );
 
       return [correctElement, ...incorretsElements];
     }
@@ -142,7 +185,7 @@ class Questions extends React.Component {
     renderAnswers = () => {
       const { randomAnswers } = this.props;
       return (
-        <>
+        <AnswersDivStyled>
           {randomAnswers.map((answer, index) => (
             <div
               key={ index }
@@ -152,7 +195,7 @@ class Questions extends React.Component {
               { answer }
             </div>
           ))}
-        </>
+        </AnswersDivStyled>
       );
     }
 
@@ -161,7 +204,6 @@ class Questions extends React.Component {
       return (
         <section>
           { results.length > 0 && this.renderQuestion() }
-
           { results.length > 0 && this.renderAnswers() }
 
         </section>
