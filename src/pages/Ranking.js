@@ -5,6 +5,10 @@ import md5 from 'crypto-js/md5';
 import PropTypes from 'prop-types';
 
 class Ranking extends React.Component {
+  componentDidMount() {
+    document.title = 'Trivia - Ranking';
+  }
+
  getRanking = () => {
    const { name, score, emailFromUser } = this.props;
    const hash = md5(emailFromUser).toString();
