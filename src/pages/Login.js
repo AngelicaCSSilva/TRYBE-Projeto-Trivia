@@ -29,6 +29,11 @@ class Login extends Component {
     dispatchRedirectToFeedback(false);
   }
 
+  validateEmail = (email) => {
+    const validationRegEx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return validationRegEx.test(email);
+  };
+
   handleChanges = ({ target }) => {
     const { name, value } = target;
     this.setState({
@@ -79,7 +84,7 @@ class Login extends Component {
             data-testid="btn-play"
             type="button"
             disabled={
-              name.length === 0 || email.length === 0
+              name.length === 0 || email.length === 0 || !this.validateEmail(email)
             }
             onClick={ this.handleClick }
           >
