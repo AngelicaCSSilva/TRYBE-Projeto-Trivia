@@ -7,6 +7,7 @@ import { clearRandomlyAnswers } from '../actions';
 
 class Feedback extends React.Component {
   componentDidMount() {
+    document.title = 'Trivia - Resultado';
     const { clearAnswers } = this.props;
     clearAnswers();
   }
