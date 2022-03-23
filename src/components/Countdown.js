@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateCountdown, resetCountdown, stopCountdown, nextButton } from '../actions';
 
+const CountdownStyled = styled.div`
+  font-size: 6vh;
+`;
 class Countdown extends Component {
   state = {
     intervalInSeconds: 1000,
@@ -72,9 +76,9 @@ class Countdown extends Component {
   render() {
     const { timer } = this.props;
     return (
-      <div>
+      <CountdownStyled>
         { timer }
-      </div>
+      </CountdownStyled>
     );
   }
 }
