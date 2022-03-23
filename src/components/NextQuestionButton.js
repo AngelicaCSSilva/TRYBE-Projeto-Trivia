@@ -6,6 +6,7 @@ import {
   redirecttofeedback,
   clearRandomlyAnswers,
   resetCountdown,
+  nextButton,
 } from '../actions';
 
 class NextQuestionButton extends React.Component {
@@ -16,6 +17,7 @@ class NextQuestionButton extends React.Component {
      currentQuestion,
      dispatchClearAnswers,
      dispatchResetCountdown,
+     saveButton,
    } = this.props;
    const lastPosition = 4;
    dispatchClearAnswers();
@@ -26,6 +28,7 @@ class NextQuestionButton extends React.Component {
    if (currentQuestion === lastPosition) {
      dispatchRedirectToFeedback(true);
    }
+   saveButton(false);
  }
 
  render() {
@@ -51,6 +54,7 @@ NextQuestionButton.propTypes = {
   dispatchRedirectToFeedback: PropTypes.func.isRequired,
   dispatchClearAnswers: PropTypes.func.isRequired,
   dispatchResetCountdown: PropTypes.func.isRequired,
+  saveButton: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -64,6 +68,7 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchRedirectToFeedback: (bool) => dispatch(redirecttofeedback(bool)),
   dispatchClearAnswers: () => dispatch(clearRandomlyAnswers()),
   dispatchResetCountdown: () => dispatch(resetCountdown()),
+  saveButton: (bool) => dispatch(nextButton(bool)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NextQuestionButton);
